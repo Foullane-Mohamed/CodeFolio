@@ -1,0 +1,19 @@
+{
+  "name": "n",
+  "version": "1.0.0",
+  "description": "Un backend centralisé et moderne pour gérer un portfolio personnel sans CMS.   Permet à l'admin de gérer profil, projets, compétences et expériences, et aux visiteurs de consulter ces informations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Foullane-Mohamed/CodeFolio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Foullane-Mohamed/CodeFolio/issues"
+  },
+  "homepage": "https://github.com/Foullane-Mohamed/CodeFolio#readme"
+}
