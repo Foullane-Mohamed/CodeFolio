@@ -1,23 +1,33 @@
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { User } from "../user/user.model";
-
-const SECRET_KEY = process.env.JWT_SECRET || "yourSecretKey";
+import { AuthUser } from "./auth.model";
 
 export class AuthService {
-  async login(username: string, password: string) {
-    const user = await User.findOne({ username });
-    if (!user) throw new Error("Invalid username or password");
+  async register(username: string, password: string) {
+    const existingUser = await AuthUser.findOne({ username });
+    if (existingUser) throw new Error("User already exists");
 
-    const isMatch = await user.comparePassword(password);
-    if (!isMatch) throw new Error("Invalid username or password");
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new AuthUser({ username, password: hashedPassword });
+    await newUser.save();
+
+    return newUser;
+  }
+
+  async login(username: string, password: string) {
+    const user = await AuthUser.findOne({ username });
+    if (!user) throw new Error("User not found");
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) throw new Error("Invalid password");
 
     const token = jwt.sign(
-      { id: user._id, username: user.username },
-      SECRET_KEY,
-      { expiresIn: "7d" }
+      { userId: user._id, username: user.username },
+      process.env.JWT_SECRET as string,
+      { expiresIn: "1d" }
     );
 
-    return { token, user };
+    return { token };
   }
 }
 
