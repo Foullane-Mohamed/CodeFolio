@@ -3,10 +3,12 @@ import { userTypeDefs } from "../modules/user/user.schema";
 import { experienceTypeDefs } from "../modules/experience/experience.schema";
 import { competenceTypeDefs } from "../modules/competence/competence.schema";
 import { projectTypeDefs } from "../modules/project/project.schema";
+import { authTypeDefs } from "../modules/auth/auth.schema";
 
 export const typeDefs = gql`
   ${userTypeDefs}
   ${experienceTypeDefs}
   ${competenceTypeDefs}
   ${projectTypeDefs}
+  ${authTypeDefs}
 `;

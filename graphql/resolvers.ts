@@ -2,6 +2,7 @@ import { userResolvers } from "../modules/user/user.resolver";
 import { experienceResolvers } from "../modules/experience/experience.resolver";
 import { competenceResolvers } from "../modules/competence/competence.resolver";
 import { projectResolvers } from "../modules/project/project.resolver";
+import { authResolvers } from "../modules/auth/auth.resolver";
 
 export const resolvers = {
   Query: {
@@ -15,5 +16,6 @@ export const resolvers = {
     ...experienceResolvers.Mutation,
     ...competenceResolvers.Mutation,
     ...projectResolvers.Mutation,
+    ...authResolvers.Mutation,
   },
 };
